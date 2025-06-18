@@ -1,6 +1,7 @@
 package com.henriqvedev.organize.service;
 
 
+import com.henriqvedev.organize.entities.Aluminium;
 import com.henriqvedev.organize.repositories.AluminiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,14 @@ public class AluminiumService {
     @Autowired
     private AluminiumRepository aluminiumRepository;
 
-    public List<GameMin>
+    public List<Aluminium> findAll(){ //busca todos aluminios
+        List<Aluminium> result = aluminiumRepository.findAll();
+        return result;
+    }
+
+    public Aluminium save(Aluminium aluminium){ //Insere aluminios
+        return aluminiumRepository.save(aluminium);
+    }
 
 
 }
