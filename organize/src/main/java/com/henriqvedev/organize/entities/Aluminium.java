@@ -3,7 +3,7 @@ package com.henriqvedev.organize.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_aluminiun")
+@Table(name = "tb_aluminium")
 public class Aluminium {
 
     @Id
