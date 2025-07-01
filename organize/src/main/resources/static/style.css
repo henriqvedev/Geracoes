@@ -108,10 +108,11 @@ body {
 }
 
 .tab-button.active {
-    color: #3b82f6;
-    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #007bff; /* Azul padrão */
+    color: #f1f1f1; /* Letra quase branca */
+    font-weight: bold; /* (opcional) deixar a letra mais grossa */
 }
+
 
 .tab-button:last-child {
     border-right: none;
