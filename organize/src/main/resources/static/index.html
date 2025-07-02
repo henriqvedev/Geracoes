@@ -5,104 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Estoque - Serralheria</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- Cabeçalho -->
 <div class="container">
     <div class="header">
-        <h1> Gerações Esquadrias </h1>
-        <p> Sistema de Estoque </p>
+        <div class="logo">
+            <img src="logo.png" alt="Gerações Esquadrias">
+        </div>
+        <h1>Gerações Esquadrias</h1>
+        <p>Sistema de Estoque</p>
     </div>
-
-    <!-- Abas de navegação -->
     <div class="tabs">
         <button class="tab-button active" onclick="showTab('aluminium')">🔷 Alumínio</button>
         <button class="tab-button" onclick="showTab('iron')">⚙️ Ferro</button>
         <button class="tab-button" onclick="showTab('tools')">🛠️ Ferramentas</button>
     </div>
-
-    <!-- Seção Alumínio -->
     <div id="aluminium-section" class="content-section active">
         <div id="aluminium-cards" class="cards-grid">
             <div class="loading">🔄 Carregando alumínio...</div>
         </div>
     </div>
-
-    <!-- Seção Ferro -->
     <div id="iron-section" class="content-section">
         <div id="iron-cards" class="cards-grid">
             <div class="loading">🔄 Carregando ferro...</div>
         </div>
     </div>
-
-    <!-- Seção Ferramentas -->
     <div id="tools-section" class="content-section">
         <div id="tools-cards" class="cards-grid">
             <div class="loading">🔄 Carregando ferramentas...</div>
         </div>
     </div>
 </div>
-
-<!-- Botão de adicionar -->
 <button class="add-button" onclick="openAddModal()">+</button>
-
-<!-- Modal para adicionar item -->
 <div id="add-modal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
+            <div class="logo-modal">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMzY2MzMzIi8+CjxwYXRoIGQ9Ik0yMDAgMTAwTDMwMCAyMDBMMjAwIDMwMEwxMDAgMjAwTDIwMCAxMDBaIiBmaWxsPSIjRjNENzk3IiBzdHJva2U9IiMzNjYzMzMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjAwIDEzMEwyNzAgMjAwTDIwMCAyNzBMMTMwIDIwMEwyMDAgMTMwWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzY2MzMzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHA+R0VSQcOHw5VFUzwvcD4KPHA+RVNRVUFEUklBUwvcD4KPHN0eWxlPgpwIHsKICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7CiAgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgZm9udC1zaXplOiAxOHB4OwogIGZpbGw6ICNGM0Q3OTc7CiAgdGV4dC1hbmNob3I6IG1pZGRsZTsKICBkb21pbmFudC1iYXNlbGluZTogY2VudHJhbDsKfQo8L3N0eWxlPgo8dGV4dCB4PSIyMDAiIHk9IjM0MCI+R0VSQcOHw5VFUzwvdGV4dD4KPHR0ZXh0IHg9IjIwMCIgeT0iMzYwIj5FU1FVQURSSUFTPC90ZXh0Pgo8L3N2Zz4=" alt="Gerações Esquadrias">
+            </div>
             <h2 class="modal-title">Adicionar Item</h2>
             <button class="close-button" onclick="closeAddModal()">&times;</button>
         </div>
-
-        <!-- Formulário -->
-        <form id="add-form" onsubmit="addItem(event)">
-            <div class="form-group">
-                <label class="form-label">Categoria</label>
-                <select id="category" class="form-input" required>
-                    <option value="aluminium">🔷 Alumínio</option>
-                    <option value="iron">⚙️ Ferro</option>
-                    <option value="tools">🛠️ Ferramentas</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Nome</label>
-                <input type="text" id="name" class="form-input" placeholder="Ex: Cavalão, Barra, Chave..." required>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Tipo</label>
-                <input type="text" id="tp" class="form-input" placeholder="Ex: Linha 38, Galvanizado, Fenda..." required>
-            </div>
-
-            <div class="form-row">
+        <div class="form-content">
+            <form id="add-form" onsubmit="addItem(event)">
                 <div class="form-group">
-                    <label class="form-label">Unidades</label>
-                    <input type="number" id="units" class="form-input" min="0" required>
+                    <label class="form-label">Categoria</label>
+                    <select id="category" class="form-input" required>
+                        <option value="aluminium">🔷 Alumínio</option>
+                        <option value="iron">⚙️ Ferro</option>
+                        <option value="tools">🛠️ Ferramentas</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Metros</label>
-                    <input type="number" id="meters" class="form-input" min="0">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">Tamanho (cm)</label>
-                    <input type="number" id="sizeCm" class="form-input" min="0">
+                    <label class="form-label">Nome</label>
+                    <input type="text" id="name" class="form-input" placeholder="Ex: Cavalão, Barra, Chave..." required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Tamanho (mm)</label>
-                    <input type="number" id="sizeMm" class="form-input" min="0">
+                    <label class="form-label">Tipo</label>
+                    <input type="text" id="tp" class="form-input" placeholder="Ex: Linha 38, Galvanizado, Fenda..." required>
                 </div>
-            </div>
-
-            <button type="submit" class="submit-button">Adicionar ao Estoque</button>
-        </form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Unidades</label>
+                        <input type="number" id="units" class="form-input" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Metros</label>
+                        <input type="number" id="meters" class="form-input" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tamanho (cm)</label>
+                        <input type="number" id="sizeCm" class="form-input" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tamanho (mm)</label>
+                        <input type="number" id="sizeMm" class="form-input" min="0">
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">Adicionar ao Estoque</button>
+            </form>
+        </div>
     </div>
 </div>
-
-<!-- Link para o JavaScript -->
 <script src="script.js"></script>
 </body>
 </html>
