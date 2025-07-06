@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/iron")
-@CrossOrigin(origins = "http://localhost:8080") // mecanism de seg do navegador
+@CrossOrigin(origins = "http://localhost:63342") // mecanism de seg do navegador
 public class IronController {
 
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/aluminium")
-@CrossOrigin(origins = "http://localhost:8080") //mecanismo de seg do navegador
+@CrossOrigin(origins = "http://localhost:63342") //mecanismo de seg do navegador
 public class AluminiumController {
 
     @Autowired
