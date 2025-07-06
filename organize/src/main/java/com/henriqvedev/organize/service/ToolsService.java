@@ -35,7 +35,7 @@ public class ToolsService {
         toolsRepository.delete(tools);
     }
 
-    public Tools update(Long id, Iron obj) {
+    public Tools update(Long id, Tools obj) {
         Tools entity = toolsRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(id)
         );

@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/aluminium")
+@CrossOrigin(origins = "http://localhost:8080") //mecanismo de seg do navegador
 public class AluminiumController {
 
     @Autowired
@@ -41,8 +42,8 @@ public class AluminiumController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
-    public Aluminium update(@PathVariable Long id, @RequestBody Iron obj) {
+    @PutMapping("/{id}") //Atualize Aluminio
+    public Aluminium update(@PathVariable Long id, @RequestBody Aluminium obj) {
         return aluminiumService.update(id, obj);
     }
 

@@ -38,7 +38,7 @@ public class AluminiumService {
 
     }
 
-    public Aluminium update(Long id, Iron obj) {
+    public Aluminium update(Long id, Aluminium obj) {
         Aluminium entity = aluminiumRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException(id)
         );

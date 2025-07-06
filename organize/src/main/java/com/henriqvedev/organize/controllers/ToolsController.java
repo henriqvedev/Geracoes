@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tools")
+@CrossOrigin(origins = "http://localhost:8080") // mecanism de seg do navegador
 public class ToolsController {
 
     @Autowired
@@ -41,8 +42,8 @@ public class ToolsController {
 
     }
 
-    @PutMapping("/{id}")
-    public Tools update(@PathVariable Long id, @RequestBody Iron obj) {
+    @PutMapping("/{id}") //Atualize ferramenta
+    public Tools update(@PathVariable Long id, @RequestBody Tools obj) {
         return toolsService.update(id, obj);
     }
 
