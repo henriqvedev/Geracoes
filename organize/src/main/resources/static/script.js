@@ -18,13 +18,11 @@ async function fetchData(endpoint) {
     }
 }
 
-// 2. FUNÇÃO PARA RENDERIZAR OS CARDS NA TELA
-// 'items' são os dados recebidos da API
-// 'category' é o nome da categoria (ex: 'aluminium', 'iron', 'tools')
+// 2. FUNÇÃO PARA RENDERIZAR OS CARDS NA TELA - AGORA COM BOTÕES FUNCIONAIS
 function renderCards(items, category) {
     // Pega o contêiner correto para a categoria (ex: 'aluminium-cards')
     const container = document.getElementById(`${category}-cards`);
-    container.innerHTML = ''; // Limpa qualquer conteúdo existente (como o "Carregando..." ou cards antigos)
+    container.innerHTML = ''; // Limpa qualquer conteúdo existente
 
     if (items.length === 0) {
         container.innerHTML = '<div class="loading">Nenhum item encontrado nesta categoria.</div>';
@@ -36,9 +34,7 @@ function renderCards(items, category) {
         const card = document.createElement('div');
         card.className = 'item-card'; // Classe para estilização no CSS
 
-        // Ajuste aqui para as propriedades EXATAS que sua API retorna.
-        // Se sua API retorna 'nomeItem', use 'item.nomeItem'.
-        // Use o operador || 'N/A' para lidar com propriedades que podem não existir.
+        // MUDANÇA PRINCIPAL: Botões agora têm funcionalidade onclick
         card.innerHTML = `
             <h3 class="card-title">${item.name || 'Nome Indisponível'}</h3>
             <p class="card-type">Tipo: ${item.tp || 'N/A'}</p>
@@ -46,19 +42,15 @@ function renderCards(items, category) {
             <p class="card-meters">Metros: ${item.meters !== undefined ? item.meters : 'N/A'}</p>
             <p class="card-size">Tamanho (cm): ${item.sizeCm !== undefined ? item.sizeCm : 'N/A'}</p>
             <p class="card-size">Tamanho (mm): ${item.sizeMm !== undefined ? item.sizeMm : 'N/A'}</p>
-            <button class="edit-button">Editar</button>
-            <button class="delete-button">Excluir</button>
+            <button class="edit-button" onclick="editItem(${item.id}, '${category}')">Editar</button>
+            <button class="delete-button" onclick="deleteItem(${item.id}, '${category}')">Excluir</button>
         `;
-        // Adiciona atributos de dados para facilitar a manipulação posterior (edição/exclusão)
-        card.dataset.itemId = item.id; // Assumindo que sua API retorna 'id'
-        card.dataset.itemCategory = category;
 
         container.appendChild(card); // Adiciona o card ao contêiner
     });
 }
 
 // 3. FUNÇÃO PARA TROCAR AS ABAS E CARREGAR DADOS
-// Agora a switchTab também é assíncrona para poder 'await' o fetchData
 async function switchTab(tabName) {
     // Remove 'active' de todos os botões
     const allTabButtons = document.querySelectorAll('.tab-button');
@@ -96,7 +88,6 @@ async function switchTab(tabName) {
         document.getElementById(cardsGridId).appendChild(tempLoadingDiv);
     }
 
-
     const data = await fetchData(tabName); // Chama a API para a categoria atual
     renderCards(data, tabName); // Renderiza os dados recebidos
 }
@@ -116,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     switchTab('aluminium');
 });
 
-
 // 5. FUNÇÕES PARA O MODAL (openAddModal, closeAddModal)
 function openAddModal() {
     const modal = document.getElementById('add-modal');
@@ -129,8 +119,8 @@ function closeAddModal() {
     document.getElementById('add-form').reset(); // Limpa o formulário
 }
 
-// 6. FUNÇÃO PARA ADICIONAR ITEM (será conectada à API em breve)
-async function addItem(event) { // Torne esta função assíncrona também
+// 6. FUNÇÃO PARA ADICIONAR ITEM - CONECTADA À API
+async function addItem(event) {
     event.preventDefault(); // Impede o recarregamento da página
 
     const category = document.getElementById('category').value;
@@ -153,36 +143,78 @@ async function addItem(event) { // Torne esta função assíncrona também
     console.log('Tentando adicionar item:', newItem, 'na categoria:', category);
 
     try {
-        // Faremos a requisição POST para a API aqui no PRÓXIMO PASSO!
-        // Por enquanto, ainda apenas no console e um alerta.
-        // const response = await fetch(`http://localhost:8080/${category}`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(newItem)
-        // });
+        const response = await fetch(`http://localhost:8080/${category}`, {
+            method: 'POST', // Método HTTP para criar
+            headers: {
+                'Content-Type': 'application/json' // Diz que estamos enviando JSON
+            },
+            body: JSON.stringify(newItem) // Converte o objeto para JSON
+        });
 
-        // if (!response.ok) {
-        //     throw new Error(`Erro ao adicionar item! Status: ${response.status}`);
-        // }
+        // Verifica se a requisição deu certo
+        if (!response.ok) {
+            throw new Error(`Erro ao adicionar item! Status: ${response.status} - ${response.statusText}`);
+        }
 
-        // const addedItem = await response.json();
-        // console.log('Item adicionado com sucesso na API:', addedItem);
+        // Pega a resposta da API (o item criado com ID)
+        const addedItem = await response.json();
+        console.log('Item adicionado com sucesso na API:', addedItem);
 
-        alert('Item adicionado com sucesso! (Ainda apenas no console. A conexão com a API virá a seguir.)');
+        // Mostra mensagem de sucesso
+        alert('Item adicionado com sucesso!');
 
+        // Fecha o modal
         closeAddModal();
-        // Após adicionar (e quando estiver conectado à API), você vai querer recarregar os cards da categoria.
-        // switchTab(category); // Descomentar isso no próximo passo.
+
+        // IMPORTANTE: Recarrega os cards da categoria atual
+        // Para mostrar o novo item que foi adicionado
+        switchTab(category);
 
     } catch (error) {
         console.error('Erro ao adicionar item:', error);
-        alert('Erro ao adicionar item. Verifique o console.');
+        alert('Erro ao adicionar item. Verifique o console para mais detalhes.');
     }
 }
 
-// 7. FECHAR MODAL CLICANDO FORA DELE
+// 7. NOVA FUNÇÃO PARA EXCLUIR ITEM
+async function deleteItem(itemId, category) {
+    // Pergunta se o usuário tem certeza
+    const confirmDelete = confirm('Tem certeza que deseja excluir este item?');
+
+    if (!confirmDelete) {
+        return; // Se cancelar, não faz nada
+    }
+
+    try {
+        // Faz a requisição DELETE para sua API
+        const response = await fetch(`http://localhost:8080/${category}/${itemId}`, {
+            method: 'DELETE' // Método HTTP para deletar
+        });
+
+        // Verifica se a requisição deu certo
+        if (!response.ok) {
+            throw new Error(`Erro ao excluir item! Status: ${response.status} - ${response.statusText}`);
+        }
+
+        console.log('Item excluído com sucesso!');
+        alert('Item excluído com sucesso!');
+
+        // Recarrega os cards da categoria atual para atualizar a lista
+        switchTab(category);
+
+    } catch (error) {
+        console.error('Erro ao excluir item:', error);
+        alert('Erro ao excluir item. Verifique o console para mais detalhes.');
+    }
+}
+
+// 8. FUNÇÃO PLACEHOLDER PARA EDITAR ITEM (implementaremos depois)
+function editItem(itemId, category) {
+    alert(`Função de editar ainda não implementada. ID: ${itemId}, Categoria: ${category}`);
+    // Aqui implementaremos a edição no próximo passo
+}
+
+// 9. FECHAR MODAL CLICANDO FORA DELE
 window.addEventListener('click', function(event) {
     const modal = document.getElementById('add-modal');
     if (event.target === modal) {
