@@ -17,9 +17,9 @@
         <p>Sistema de Estoque</p>
     </div>
     <div class="tabs">
-        <button class="tab-button active" onclick="showTab('aluminium')">🔷 Alumínio</button>
-        <button class="tab-button" onclick="showTab('iron')">⚙️ Ferro</button>
-        <button class="tab-button" onclick="showTab('tools')">🛠️ Ferramentas</button>
+        <button class="tab-button active" data-tab="aluminium">🔷 Alumínio</button>
+        <button class="tab-button"        data-tab="iron">⚙️ Ferro</button>
+        <button class="tab-button"        data-tab="tools">🛠️ Ferramentas</button>
     </div>
     <div id="aluminium-section" class="content-section active">
         <div id="aluminium-cards" class="cards-grid">
@@ -42,7 +42,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="logo-modal">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMzY2MzMzIi8+CjxwYXRoIGQ9Ik0yMDAgMTAwTDMwMCAyMDBMMjAwIDMwMEwxMDAgMjAwTDIwMCAxMDBaIiBmaWxsPSIjRjNENzk3IiBzdHJva2U9IiMzNjYzMzMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjAwIDEzMEwyNzAgMjAwTDIwMCAyNzBMMTMwIDIwMEwyMDAgMTMwWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzY2MzMzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHA+R0VSQcOHw5VFUzwvcD4KPHA+RVNRVUFEUklBUwvcD4KPHN0eWxlPgpwIHsKICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7CiAgZm9udC13ZWlnaHQ6IGJvbGQ7CiAgZm9udC1zaXplOiAxOHB4OwogIGZpbGw6ICNGM0Q3OTc7CiAgdGV4dC1hbmNob3I6IG1pZGRsZTsKICBkb21pbmFudC1iYXNlbGluZTogY2VudHJhbDsKfQo8L3N0eWxlPgo8dGV4dCB4PSIyMDAiIHk9IjM0MCI+R0VSQcOHw5VFUzwvdGV4dD4KPHR0ZXh0IHg9IjIwMCIgeT0iMzYwIj5FU1FVQURSSUFTPC90ZXh0Pgo8L3N2Zz4=" alt="Gerações Esquadrias">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnLWdyYWRpZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNGFkZTgwO3N0b3Atb3BhY2l0eToxIiAvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzIyYzU1ZTtzdG9wLW9wYWNpdHk6MSIgLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIzOCIgZmlsbD0idXJsKCNiZy1ncmFkaWVudCkiIHN0cm9rZT0iIzM2NjMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMzYiIHk9IjIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2ZmZmZmZiIgcng9IjQiLz48cmVjdCB4PSIyMCIgeT0iMzYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmZmZmIiByeD0iNCIvPjwvc3ZnPg==" alt="Adicionar Item">
             </div>
             <h2 class="modal-title">Adicionar Item</h2>
             <button class="close-button" onclick="closeAddModal()">&times;</button>
