@@ -353,3 +353,21 @@ select:focus {
 .modal.show {
     display: block;
 }
+
+/* ESTILOS PARA O MODAL DE EDIÇÃO */
+#edit-modal .modal-content {
+    background-color: #1a4d2e;
+    border: 2px solid #22c55e;
+}
+
+#edit-modal .modal-title {
+    color: #22c55e;
+}
+
+#edit-modal .submit-button {
+    background-color: #22c55e;
+}
+
+#edit-modal .submit-button:hover {
+    background-color: #16a34a;
+}

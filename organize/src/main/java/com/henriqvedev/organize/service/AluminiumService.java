@@ -2,7 +2,6 @@ package com.henriqvedev.organize.service;
 
 
 import com.henriqvedev.organize.entities.Aluminium;
-import com.henriqvedev.organize.entities.Iron;
 import com.henriqvedev.organize.exceptions.ResourceNotFoundException;
 import com.henriqvedev.organize.repositories.AluminiumRepository;
 import org.springframework.beans.factory.annotation.Autowired;

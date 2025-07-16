@@ -90,6 +90,56 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL DE EDIÇÃO - COLE APÓS O MODAL DE ADIÇÃO EXISTENTE -->
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="logo-modal">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJnLWdyYWRpZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojNGFkZTgwO3N0b3Atb3BhY2l0eToxIiAvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzIyYzU1ZTtzdG9wLW9wYWNpdHk6MSIgLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI0MCIgY3k9IjQwIiByPSIzOCIgZmlsbD0idXJsKCNiZy1ncmFkaWVudCkiIHN0cm9rZT0iIzM2NjMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMzYiIHk9IjIwIiB3aWR0aD0iOCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2ZmZmZmZiIgcng9IjQiLz48cmVjdCB4PSIyMCIgeT0iMzYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmZmZmIiByeD0iNCIvPjwvc3ZnPg==" alt="Editar Item">
+            </div>
+            <h2 class="modal-title">Editar Item</h2>
+            <button class="close-button" onclick="closeEditModal()">&times;</button>
+        </div>
+        <div class="form-content">
+            <form id="edit-form" onsubmit="updateItem(event)">
+                <input type="hidden" id="edit-id">
+                <input type="hidden" id="edit-category">
+
+                <div class="form-group">
+                    <label class="form-label">Nome</label>
+                    <input type="text" id="edit-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo</label>
+                    <input type="text" id="edit-tp" class="form-input" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Unidades</label>
+                        <input type="number" id="edit-units" class="form-input" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Metros</label>
+                        <input type="number" id="edit-meters" class="form-input" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tamanho (cm)</label>
+                        <input type="number" id="edit-sizeCm" class="form-input" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tamanho (mm)</label>
+                        <input type="number" id="edit-sizeMm" class="form-input" min="0">
+                    </div>
+                </div>
+                <button type="submit" class="submit-button">Atualizar Item</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

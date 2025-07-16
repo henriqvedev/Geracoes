@@ -1,0 +1,32 @@
+version: '3.8' # Versao da sintaxe do Docker Compose
+
+services:
+  # Servico para a sua API Spring Boot
+  app:
+    build: . # Indica para construir a imagem a partir do Dockerfile no diretorio atual
+    ports:
+      - "8080:8080" # Mapeia a porta 8080 do host para a 8080 do conteiner da API
+    environment: # Variaveis de ambiente para a API
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydatabase # URL de conexao com o banco de dados
+      SPRING_DATASOURCE_USERNAME: user # Usuario do banco de dados
+      SPRING_DATASOURCE_PASSWORD: password # Senha do banco de dados
+    depends_on: # Garante que o servico 'db' inicie antes do 'app'
+      - db
+    # volumes: # Opcional: Se voce precisar mapear volumes para logs ou outros arquivos da sua API
+    #   - ./logs:/app/logs
+
+  # Servico para o banco de dados PostgreSQL
+  db:
+    image: postgres:13-alpine # Usa uma imagem oficial do PostgreSQL (versao 13, com Alpine para ser menor)
+    environment: # Variaveis de ambiente para configurar o PostgreSQL
+      POSTGRES_DB: mydatabase # Nome do banco de dados a ser criado
+      POSTGRES_USER: user # Usuario do banco de dados
+      POSTGRES_PASSWORD: password # Senha do banco de dados
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Mapeia um volume para persistir os dados do banco
+    ports: # AGORA EXPOMOS A PORTA DO DB PARA O SEU COMPUTADOR!
+      - "5432:5432" # A porta 5432 do seu PC acessa a 5432 do conteiner do DB
+
+# Definicao dos volumes (para persistencia dos dados do PostgreSQL)
+volumes:
+  pgdata: #Este volume sera criado e gerenciado pelo Docker para armazenar os dados do DB
