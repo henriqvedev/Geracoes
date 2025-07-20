@@ -126,7 +126,6 @@ Contribuições são muito bem-vindas! Se você encontrar bugs, tiver sugestões
 
 * **Henrique Barcelos**
 * **LinkedIn:** [https://www.linkedin.com/in/henriqvedev/](https://www.linkedin.com/in/henriqvedev/)
-* **Email:** [henriqvebarcelos@gmail.com]
 
 ## 📄 Licença
 
@@ -134,6 +133,6 @@ Este projeto está licenciado sob a Licença MIT. Para mais detalhes, consulte o
 
 ## ⚖️ Aviso Legal e Direitos de Marca
 
-O nome "Gerações" e o logotipo associados são marcas comerciais ou de serviço registradas pertencentes a [Gerações Esquadrias]. O uso não autorizado dessas marcas é estritamente proibido.
+O nome "Gerações" e o logotipo associado é uma marca comercial ou de serviço registrada pertencente a [Gerações Esquadrias](https://www.instagram.com/geracoes_esquadrias/). O uso não autorizado dessa marca é estritamente proibido.
 
 A licença MIT deste software aplica-se apenas ao código-fonte e não concede nenhum direito sobre as marcas comerciais, nomes ou logotipos do projeto.
