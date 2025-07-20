@@ -3,7 +3,7 @@ version: '3.8' # Versao da sintaxe do Docker Compose
 services:
   # Servico para a sua API Spring Boot
   app:
-    build: . # Indica para construir a imagem a partir do Dockerfile no diretorio atual
+    build: organize # Indica para construir a imagem a partir do Dockerfile no diretorio atual
     ports:
       - "8080:8080" # Mapeia a porta 8080 do host para a 8080 do conteiner da API
     environment: # Variaveis de ambiente para a API
