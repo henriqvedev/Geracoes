@@ -1,8 +1,6 @@
 package com.henriqvedev.organize.controllers;
 
 import com.henriqvedev.organize.entities.Aluminium;
-import com.henriqvedev.organize.entities.Iron;
-import com.henriqvedev.organize.entities.Tools;
 import com.henriqvedev.organize.service.AluminiumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
